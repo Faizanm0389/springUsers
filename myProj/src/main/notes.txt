@@ -1,0 +1,68 @@
+Dependencies
+
+Spring web: For making APIs
+- RestController-> define controller class and the return should be a HTTP response
+- GetMapping and Postmapping handling get and post requests
+- Autowired: used to objects
+- RequestMapping: custom path
+
+
+Data JPA: Handles CURD(create, update, read, delete) operations on database
+-Entity: For entity class mapped to database (Data structure class)
+-Table: Specify name of data table used for mapping
+-ID: specify ID
+-Repository: annotates class which encapsulates logic to data source
+
+HT Database: in memory database(Learn more about properties)
+spring.datasource.url: Specifies the JDBC URL for the H2 in-memory database named usersdb.
+spring.jpa.hibernate.ddl-auto=none: We'll manage the schema manually using SQL scripts.
+spring.h2.console.enabled=true: Enables the H2 web console for database inspection.
+spring.h2.console.path=/h2-console: Access the console at http://localhost:8080/h2-console.
+spring.jpa.show-sql=true: Displays SQL queries in the console for debugging.
+
+
+STEP1:
+
+Define Data structure class (User) and its properties
+
+-define class with @Entity and @Table(name = "classname")
+- mark id propterty with @id
+- make default and parameterized constructor, getters/setters
+
+STEP2:
+create sql files (main/resources/)to create and populate table
+- check to see if you can view them at http://localhost:8080/h2-console
+
+STEP3:
+Create repo file (logic file)
+
+@Repository
+public interface RepoFIle extends JpaRepository<User, Integer> {methods}
+
+STEP 4:
+middle point between repo and controller(handeling http requests)
+-includes business logic: calculations and operations
+@Service
+Class name
+public datatype method(){ return obj}
+
+
+Step 4:
+Controller is for http requests
+
+@RestController
+class
+
+@GetMapping("/path")
+public Datatype method(){return dataype}
+
+Step 5:
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+add this to main class
+
+
+
+
